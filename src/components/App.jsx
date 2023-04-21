@@ -16,6 +16,14 @@ class App extends Component {
     filter: '',
   };
 
+  componentDidUpdate(prevProps, prevState) {
+    console.log('App componentDidUpdate');
+    if (this.state.contacts !== prevState.contacts) {
+      console.log('Обновилось поле');
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    }
+  }
+
   handleForm = ({ name, number }) => {
     const newContact = {
       id: nanoid(),
